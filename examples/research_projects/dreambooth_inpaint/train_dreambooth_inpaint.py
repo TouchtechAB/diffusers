@@ -700,7 +700,7 @@ def main():
                 mask = mask.reshape(-1, 1, args.resolution // 8, args.resolution // 8)
 
                 # Sample noise that we'll add to the latents
-                noise = torch.randn_like(latents) + 0.1 * torch.randn(latents.shape[0], latents.shape[1], 1, 1)
+                noise = torch.randn_like(latents, device=accelerator.device) + 0.1 * torch.randn(latents.shape[0], latents.shape[1], 1, 1)
                 bsz = latents.shape[0]
                 # Sample a random timestep for each image
                 timesteps = torch.randint(0, noise_scheduler.config.num_train_timesteps, (bsz,), device=latents.device)
